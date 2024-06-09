@@ -9,7 +9,7 @@ import com.example.chatapp.R
 import com.example.chatapp.base.BaseActivity
 import com.example.chatapp.database.getRoomsFromFireStore
 import com.example.chatapp.databinding.ActivityHomeBinding
-import com.example.chatapp.model.Room
+import com.example.chatapp.database.model.Room
 import com.example.chatapp.ui.chat.ChatActivity
 import com.example.chatapp.ui.addRoom.AddRoomActivity
 import com.example.chatapp.ui.login.LoginActivity

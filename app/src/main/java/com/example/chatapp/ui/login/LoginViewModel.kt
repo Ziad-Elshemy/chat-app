@@ -2,10 +2,10 @@ package com.example.chatapp.ui.login
 
 import android.util.Log
 import androidx.databinding.ObservableField
+import com.example.chatapp.DataUtils
 import com.example.chatapp.base.BaseViewModel
 import com.example.chatapp.database.signIn
-import com.example.chatapp.model.AppUser
-import com.google.android.gms.tasks.OnFailureListener
+import com.example.chatapp.database.model.AppUser
 import com.google.android.gms.tasks.OnSuccessListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -40,13 +40,13 @@ class LoginViewModel:BaseViewModel<Navigator>() {
 //                messageLiveData.value = "Login Successful"
                 Log.e("firebase: ", "Success Login")
 //                navigator?.openHomeScreen()
-                checkUserFromFireStore(task.result.user?.uid)
+                getUserFromFireStore(task.result.user?.uid)
             }
         }
 
     }
 
-    private fun checkUserFromFireStore(uid: String?) {
+    private fun getUserFromFireStore(uid: String?) {
         showLoading.value = true
         signIn(uid!!, OnSuccessListener
         {docSnapshot->
@@ -56,6 +56,7 @@ class LoginViewModel:BaseViewModel<Navigator>() {
                 messageLiveData.value = "Invalid Email or Password"
                 return@OnSuccessListener
             }
+            DataUtils.user = user
             navigator?.openHomeScreen()
             }
         ) {

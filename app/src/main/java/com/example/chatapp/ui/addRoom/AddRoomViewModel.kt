@@ -6,9 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import com.example.chatapp.base.BaseViewModel
 import com.example.chatapp.database.addRoomToFireStore
 import com.example.chatapp.model.Category
-import com.example.chatapp.model.Room
-import com.google.android.gms.tasks.OnFailureListener
-import com.google.android.gms.tasks.OnSuccessListener
+import com.example.chatapp.database.model.Room
 
 class AddRoomViewModel : BaseViewModel<Navigator>() {
 

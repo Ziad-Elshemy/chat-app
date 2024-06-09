@@ -6,7 +6,7 @@
     <data>
         <variable
             name="item"
-            type="com.example.chatapp.model.Room" />
+            type="com.example.chatapp.database.model.Room" />
     </data>
 
     <androidx.cardview.widget.CardView

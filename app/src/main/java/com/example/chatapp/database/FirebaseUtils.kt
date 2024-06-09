@@ -1,7 +1,8 @@
 package com.example.chatapp.database
 
-import com.example.chatapp.model.AppUser
-import com.example.chatapp.model.Room
+import com.example.chatapp.database.model.AppUser
+import com.example.chatapp.database.model.Message
+import com.example.chatapp.database.model.Room
 import com.google.android.gms.tasks.OnFailureListener
 import com.google.android.gms.tasks.OnSuccessListener
 import com.google.firebase.firestore.CollectionReference
@@ -56,6 +57,26 @@ fun getRoomsFromFireStore(onSuccessListener: OnSuccessListener<QuerySnapshot>,
     collection.get()
         .addOnSuccessListener(onSuccessListener)
         .addOnFailureListener(onFailureListener)
+
+}
+
+fun getMessagesRef(roomId:String):CollectionReference{
+    val collectionRef = getCollection(Room.COLLECTION_NAME)
+    val roomRef = collectionRef.document(roomId)
+    return roomRef.collection(Message.COLLECTION_NAME)
+}
+
+fun addMessageToFireStore(message: Message,
+                          onSuccessListener: OnSuccessListener<Void>,
+                          onFailureListener: OnFailureListener){
+
+    val messagesCollRef = getMessagesRef(message.roomId!!)
+    val messageRef = messagesCollRef.document()
+    message.id = messageRef.id
+    messageRef.set(message)
+        .addOnSuccessListener(onSuccessListener)
+        .addOnFailureListener(onFailureListener)
+
 
 }
 

@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="vm"
+            type="com.example.chatapp.ui.chat.ChatViewModel" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -35,7 +37,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Room Name"
+                    android:text="@{vm.room.name}"
                     android:textSize="24sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -64,6 +66,7 @@
             android:gravity="center_vertical"
             android:paddingVertical="12dp"
             android:paddingHorizontal="12dp"
+            android:onClick="@{()->vm.sendMessage()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             >
@@ -79,28 +82,52 @@
                 android:src="@drawable/ic_send"/>
         </LinearLayout>
 
+<!--        <com.google.android.material.textfield.TextInputLayout-->
+<!--            android:id="@+id/password_layout"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:padding="8dp"-->
+<!--            app:error="@{vm.messageFieldError}"-->
+<!--            app:boxBackgroundColor="@color/transparent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toStartOf="@id/send_btn">-->
+
+<!--            <EditText-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                background="@drawable/rounded_stroke_send_message"-->
+<!--                android:hint="Type your message here"-->
+<!--                android:text="@={vm.messageField}"/>-->
+<!--        </com.google.android.material.textfield.TextInputLayout>-->
+
         <EditText
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:background="@drawable/rounded_stroke_send_message"
-            android:padding="8dp"
+            android:padding="12dp"
             android:layout_marginEnd="8dp"
+            android:text="@={vm.messageField}"
             android:hint="Type your message here"
+
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/send_btn"
-            app:layout_constraintTop_toTopOf="@id/send_btn"
-            app:layout_constraintBottom_toBottomOf="@id/send_btn"
             />
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:paddingTop="24dp"
             android:paddingBottom="8dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:orientation="vertical"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/send_btn"/>
+            app:layout_constraintBottom_toTopOf="@id/send_btn"
+            tools:listitem="@layout/item_message_sent"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

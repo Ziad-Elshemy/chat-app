@@ -6,7 +6,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.chatapp.R
 import com.example.chatapp.databinding.ItemRoomBinding
-import com.example.chatapp.model.Room
+import com.example.chatapp.database.model.Room
 
 class RoomsAdapter( var items:List<Room?>? ) : RecyclerView.Adapter<RoomsAdapter.ViewHolder>() {
 
@@ -33,7 +33,7 @@ class RoomsAdapter( var items:List<Room?>? ) : RecyclerView.Adapter<RoomsAdapter
 
     var onItemClickListener: OnItemClickListener? = null
     interface OnItemClickListener{
-        fun onItemClick(pos:Int,room:Room)
+        fun onItemClick(pos:Int,room: Room)
     }
 
     fun changeData(room: List<Room>){
@@ -44,7 +44,7 @@ class RoomsAdapter( var items:List<Room?>? ) : RecyclerView.Adapter<RoomsAdapter
     class ViewHolder(var viewDataBinding: ItemRoomBinding) : RecyclerView.ViewHolder(viewDataBinding.root){
 
         // function to bind the view into the viewDataBinding
-        fun bind(room:Room?){
+        fun bind(room: Room?){
             viewDataBinding.item = room
             viewDataBinding.invalidateAll()
         }

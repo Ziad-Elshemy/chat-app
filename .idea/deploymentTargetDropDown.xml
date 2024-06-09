@@ -6,7 +6,7 @@
         <State>
           <targetSelectedWithDropDown>
             <Target>
-              <type value="COLD_BOOT_TARGET" />
+              <type value="QUICK_BOOT_TARGET" />
               <deviceKey>
                 <Key>
                   <type value="VIRTUAL_DEVICE_PATH" />
@@ -15,7 +15,7 @@
               </deviceKey>
             </Target>
           </targetSelectedWithDropDown>
-          <timeTargetWasSelectedWithDropDown value="2024-06-07T16:12:42.679751900Z" />
+          <timeTargetWasSelectedWithDropDown value="2024-06-08T21:11:37.701786300Z" />
         </State>
       </entry>
     </value>

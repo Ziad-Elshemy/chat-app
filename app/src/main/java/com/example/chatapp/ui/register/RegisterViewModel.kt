@@ -2,9 +2,10 @@ package com.example.chatapp.ui.register
 
 import android.util.Log
 import androidx.databinding.ObservableField
+import com.example.chatapp.DataUtils
 import com.example.chatapp.base.BaseViewModel
 import com.example.chatapp.database.addUserToFireStore
-import com.example.chatapp.model.AppUser
+import com.example.chatapp.database.model.AppUser
 import com.google.android.gms.tasks.OnFailureListener
 import com.google.android.gms.tasks.OnSuccessListener
 import com.google.firebase.auth.FirebaseAuth
@@ -65,11 +66,12 @@ class RegisterViewModel: BaseViewModel<Navigator>() {
         showLoading.value = true
         val user = AppUser (uid,userName.get(),firstName.get(),lastName.get(),email.get())
         addUserToFireStore(user,
-            OnSuccessListener {
+            onSuccessListener = {
                 showLoading.value = false
+                DataUtils.user = user
                 navigator?.openHomeScreen()
         },
-            OnFailureListener {
+            onFailureListener = {
                 showLoading.value = false
                 messageLiveData.value = it.localizedMessage
             })
